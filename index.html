@@ -1,0 +1,174 @@
+# krihl2011.github.io
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hva vil folk si – Refleksjon</title>
+
+    <!-- Google Font for elegant cursive style -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+            color: #f3f3f3;
+            line-height: 1.7;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            /* SET YOUR OWN BACKGROUND IMAGE HERE */
+            background-image: url('YOUR_BACKGROUND_IMAGE.jpg');
+        }
+
+        .overlay {
+            background: rgba(0, 0, 0, 0.55);
+            width: 100%;
+            min-height: 100vh;
+            padding: 40px 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 14px;
+            backdrop-filter: blur(4px);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-top: 40px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .lang-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 20px 0 40px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: none;
+            border: 2px solid #ffffff;
+            border-radius: 8px;
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: white;
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <h1>Hva vil folk si – Resonnerende tekst</h1>
+
+            <div class="lang-buttons">
+                <button onclick="switchLang('no')">Norsk</button>
+                <button onclick="switchLang('en')">English</button>
+                <button onclick="switchLang('kr')">한국어</button>
+            </div>
+
+            <div id="content">
+                <!-- Norwegian default text -->
+                <h2>Innledning</h2>
+                <p>I filmen <em>Hva vil folk si</em> møter vi tenåringen Nisha, en norsk-pakistansk jente som lever i spennet mellom to verdener som aldri helt klarer å møtes...</p>
+
+                <h2>To kulturer – to logikker</h2>
+                <p>Den norske kulturen i filmen representerer et idealsystem som setter individet først...</p>
+
+                <h2>Skam som sosialt våpen</h2>
+                <p>Tittelen <em>Hva vil folk si</em> avslører hele filmens moralske motor...</p>
+
+                <h2>Kjærlighet i konfliktens skygge</h2>
+                <p>Noe av det mest interessante i filmen er at den ikke fremstiller foreldrene som onde...</p>
+
+                <h2>Mine egne refleksjoner</h2>
+                <p>Personlig mener jeg filmen tydelig avdekker de problematiske sidene ved patriarkalske...</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const text_no = `
+        <h2>Innledning</h2>
+        <p>I filmen <em>Hva vil folk si</em> møter vi tenåringen Nisha...</p>
+
+        <h2>To kulturer – to logikker</h2>
+        <p>Den norske kulturen i filmen representerer...</p>
+
+        <h2>Skam som sosialt våpen</h2>
+        <p>Tittelen <em>Hva vil folk si</em> avslører...</p>
+
+        <h2>Kjærlighet i konfliktens skygge</h2>
+        <p>Noe av det mest interessante i filmen...</p>
+
+        <h2>Mine egne refleksjoner</h2>
+        <p>Personlig mener jeg filmen tydelig avdekker...</p>`;
+
+        const text_en = `
+        <h2>Introduction</h2>
+        <p>In the film <em>What Will People Say</em>, we meet Nisha...</p>
+
+        <h2>Two cultures – two logics</h2>
+        <p>The Norwegian culture in the film represents...</p>
+
+        <h2>Shame as a social weapon</h2>
+        <p>The title <em>What Will People Say</em> reveals...</p>
+
+        <h2>Love in the shadow of conflict</h2>
+        <p>One of the most interesting aspects of the film...</p>
+
+        <h2>My reflections</h2>
+        <p>Personally, I believe the film clearly exposes...</p>`;
+
+        const text_kr = `
+        <h2>소개</h2>
+        <p>영화 <em>하와 빌 폭 시</em>에서 우리는 니샤라는 소녀를 만나게 됩니다...</p>
+
+        <h2>두 문화 – 두 논리</h2>
+        <p>영화 속 노르웨이 문화는 개인의 자유를 우선시하는...</p>
+
+        <h2>사회적 무기로서의 수치심</h2>
+        <p><em>하와 빌 폭 시</em>라는 제목은...</p>
+
+        <h2>갈등 속의 사랑</h2>
+        <p>이 영화가 흥미로운 이유는 부모를 악인으로 묘사하지 않는다는 것입니다...</p>
+
+        <h2>나의 성찰</h2>
+        <p>개인적으로 이 영화는 가부장적 문화의 문제점을...</p>`;
+
+        function switchLang(lang) {
+            if (lang === 'no') document.getElementById('content').innerHTML = text_no;
+            if (lang === 'en') document.getElementById('content').innerHTML = text_en;
+            if (lang === 'kr') document.getElementById('content').innerHTML = text_kr;
+        }
+    </script>
+</body>
+</html>
