@@ -1,121 +1,74 @@
-<!doctype html>
+ <!doctype html>
 <html lang="nb">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Hva vil folk si — Resonnerende tekst</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hva vil folk si — Resonnerende (rosa, cursive)</title>
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
     :root{
-      --max-width: 900px;
-      --padding: 24px;
-      --bg-url: none; /* Sett en bakgrunnsbilde-URL her: --bg-url: url("path/til/ditt-bilde.jpg") */
-      --text-color: #111111;
-      --accent: #8b5cf6;
-      --card-bg: rgba(255,255,255,0.86);
-      --rounded: 14px;
-      --shadow: 0 8px 30px rgba(0,0,0,0.12);
+      --bg: linear-gradient(135deg,#ffe6f0 0%, #ffd9ec 50%, #fff1f7 100%);
+      --card-bg: rgba(255,255,255,0.9);
+      --accent: #ff66b2;
+      --text: #3a1533;
+      --radius: 18px;
+      --max-width: 920px;
     }
-
-    html,body{height:100%;}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial;}
     body{
-      margin:0;
-      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background-image: var(https://i.pinimg.com/736x/81/dd/28/81dd28a7c4ec7384ed87a0b793ea10ef.jpg);
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px;
-      color:var(--text-color);
-      -webkit-font-smoothing:antialiased;
+      background:var(--bg);
+      display:flex;align-items:center;justify-content:center;padding:20px;color:var(--text);
     }
 
-    .shell{
-      width:100%;
-      max-width:var(--max-width);
-      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.94));
-      border-radius:var(--rounded);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      display:flex;
-      flex-direction:column;
-    }
+    .wrap{width:100%;max-width:var(--max-width);background:var(--card-bg);border-radius:var(--radius);box-shadow:0 12px 40px rgba(58,21,51,0.12);overflow:hidden}
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:16px 20px;
-      border-bottom:1px solid rgba(0,0,0,0.06);
-      background:linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.75));
-      backdrop-filter: blur(4px);
-    }
-
-    h1{margin:0;font-size:1.1rem;letter-spacing:0.2px}
+    header{padding:18px 20px;border-bottom:1px solid rgba(58,21,51,0.06);display:flex;align-items:center;justify-content:space-between;gap:12px}
+    h1{margin:0;font-family:'Great Vibes', cursive;font-size:1.8rem;color:var(--accent);}
     .controls{display:flex;gap:8px;align-items:center}
-    .btn{appearance:none;border:0;padding:8px 12px;border-radius:10px;font-weight:600;cursor:pointer;background:var(--accent);color:white}
-    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(139,92,246,0.12)}
-    .btn.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(139,92,246,0.14)}
 
-    main{padding:var(--padding); overflow:auto}
-    article{max-width:860px;margin:0 auto}
+    .btn{background:var(--accent);color:white;border:0;padding:8px 12px;border-radius:12px;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--accent);border:2px solid rgba(255,102,178,0.18)}
 
-    .meta{font-size:0.92rem;margin-bottom:12px;color:rgba(0,0,0,0.6)}
+    main{padding:18px}
+    .box{background:rgba(255,246,251,0.9);border-radius:12px;padding:18px;max-height:56vh;overflow:auto;border:1px solid rgba(58,21,51,0.04)}
 
-    p{line-height:1.62;margin:14px 0;font-size:1rem}
-    strong{font-weight:700}
 
-    footer{padding:14px 20px;border-top:1px solid rgba(0,0,0,0.06);font-size:0.9rem;color:rgba(0,0,0,0.6);display:flex;justify-content:space-between;align-items:center}
+    article{font-family:'Great Vibes', cursive;font-size:18px;line-height:1.6;color:var(--text)}
+    article p{margin:0 0 12px}
+    article h3{font-family:Inter, sans-serif;margin-top:12px;margin-bottom:8px;color:#6b2340}
 
-    /* small screens */
+    footer{padding:14px 18px;border-top:1px solid rgba(58,21,51,0.04);display:flex;align-items:center;justify-content:space-between}
+    .small{font-size:0.9rem;color:rgba(58,21,51,0.6)}
+
+
     @media (max-width:600px){
-      :root{--padding:16px}
-      header{padding:12px}
-      main{padding:16px}
-      h1{font-size:1rem}
-      p{font-size:0.98rem}
+      article{font-size:16px}
+      .box{max-height:65vh}
+      h1{font-size:1.4rem}
     }
 
-    /* color themes for text (JS will toggle classes) */
-    .theme-1{--text-color:#111111}
-    .theme-2{--text-color:#1f2937}
-    .theme-3{--text-color:#0b3c5d}
-    .theme-4{--text-color:#3b2f63}
-    .theme-5{--text-color:#4b371c}
 
-    .lang-kor{direction:ltr}
-
-    /* subtle card for the article so text is readable on any bg */
-    .content-card{background:var(--card-bg);padding:20px;border-radius:10px}
-
-    /* language toggle indicator */
-    .lang-indicator{font-size:0.9rem;padding:6px 10px;border-radius:8px;background:rgba(0,0,0,0.04)}
-
+    .hidden{display:none}
   </style>
 </head>
-<body class="theme-1">
-  <div class="shell" role="document">
+<body>
+  <div class="wrap" role="document">
     <header>
-      <h1>"Hva vil folk si" — Resonnerende tekst</h1>
+      <h1>Hva vil folk si</h1>
       <div class="controls">
-        <div class="lang-indicator" id="langIndicator">Språk: Norsk (bokmål)</div>
-        <button class="btn" id="colorBtn">Bytt tekstfarge</button>
-        <button class="btn secondary" id="translateBtn">Oversett til koreansk</button>
-        <button class="btn ghost" id="bgHelp">Bakgrunnsbilde</button>
+        <button id="toggleBtn" class="btn">Translate to English</button>
+        <button id="downloadBtn" class="btn secondary">Last ned HTML</button>
       </div>
     </header>
 
     <main>
-      <div class="content-card">
-        <article>
-
-          <!-- Norsk original -->
-          <div id="noText">
-<p>I filmen <strong>Hva vil folk si</strong> møter vi tenåringen Nisha, en norsk-pakistansk jente som lever i spennet mellom to verdener som aldri helt klarer å møtes. Hun vokser opp i Norge, men i en familie som bærer med seg normer, verdier og forventninger fra Pakistan. Filmen utforsker ikke bare en personlig konflikt – den viser en av vår tids mest universelle erfaringer: kampen mellom individets frihet og kollektive tradisjoner. Identitet er ikke noe vi bare “har”. Den formes i møtet mellom oss selv og verden. Filosofen Hannah Arendt mente at identitet skapes når vi trer frem foran andre – når vi handler, velger, og viser hvem vi er. Problemet for Nisha er at hun ikke får lov til å tre frem slik hun selv ønsker. Hun blir tvunget til å spille to roller: den perfekte datteren hjemme, og den vanlige norske tenåringen ute.</p>
+      <div class="box" id="scrollBox" tabindex="0" aria-label="Tekstinnhold, scroll for å lese hele teksten">
+  
+        <article id="noText">
+<p>Resonnerende tekst om Hva vil folk si
+I filmen Hva vil folk si møter vi tenåringen Nisha, en norsk-pakistansk jente som lever i spennet mellom to verdener som aldri helt klarer å møtes. Hun vokser opp i Norge, men i en familie som bærer med seg normer, verdier og forventninger fra Pakistan. Filmen utforsker ikke bare en personlig konflikt – den viser en av vår tids mest universelle erfaringer: kampen mellom individets frihet og kollektive tradisjoner. Identitet er ikke noe vi bare “har”. Den formes i møtet mellom oss selv og verden. Filosofen Hannah Arendt mente at identitet skapes når vi trer frem foran andre – når vi handler, velger, og viser hvem vi er. Problemet for Nisha er at hun ikke får lov til å tre frem slik hun selv ønsker. Hun blir tvunget til å spille to roller: den perfekte datteren hjemme, og den vanlige norske tenåringen ute.</p>
 
 <p>Dette mellomrommet mellom to roller blir etter hvert et rom uten trygghet. Hun hører ikke helt hjemme noe sted. Mange unge som vokser opp i minoritetsfamilier i Norge kjenner nettopp denne følelsen: “Hvem er jeg når ingen av verdener helt godtar meg?”</p>
 
@@ -127,139 +80,102 @@
 
 <p>Dermed blir hun stående i en eksistensiell konflikt: Er jeg fri, eller er jeg bundet? Og hvem betaler prisen hvis jeg velger meg selv? Dette er det dypeste spørsmålet filmen stiller – ikke bare om kultur, men om hva det betyr å være menneske.</p>
 
-<p>Tittelen <em>Hva vil folk si</em> avslører hele filmens moralske motor. Skam blir et sosialt verktøy, en stille makt som styrer handlinger like sterkt som religion eller tradisjon. For Nishas far er ikke datterens handlinger bare hennes egne; de blir et speil som storsamfunnet kan bruke til å dømme hele familien. Når han sender henne til Pakistan, skjer det ikke nødvendigvis fordi han hater henne – men fordi han frykter det sosiale blikket som dømmer uten å forstå.</p>
+<p>Tittelen Hva vil folk si avslører hele filmens moralske motor. Skam blir et sosialt verktøy, en stille makt som styrer handlinger like sterkt som religion eller tradisjon. For Nishas far er ikke datterens handlinger bare hennes egne; de blir et speil som storsamfunnet kan bruke til å
+dømme hele familien. Når han sender henne til Pakistan, skjer det ikke nødvendigvis fordi han hater henne – men fordi han frykter det sosiale blikket som dømmer uten å forstå.
+Her blir skam et fengsel, ikke bare for Nisha, men også for foreldrene. Filmen viser hvordan mennesker kan bli fanget av forventningene i et samfunn de ikke engang bor i lenger.</p>
 
-<p>Her blir skam et fengsel, ikke bare for Nisha, men også for foreldrene. Filmen viser hvordan mennesker kan bli fanget av forventningene i et samfunn de ikke engang bor i lenger.</p>
+<p>Noe av det mest interessante i filmen er at den ikke fremstiller foreldrene som onde. Tvert imot viser den hvor komplisert kjærlighet kan være når den formes av tradisjon, frykt og forventninger. Faren elsker datteren sin, men kjærligheten filtreres gjennom forestillinger om ære, ansvar og religion. Dermed får kjærligheten en mørk form: den beskytter gjennom kontroll, den straffer for å redde, den fengsler for å bevare det man tror er best.</p>
 
-<p>Noe av det mest interessante i filmen er at den ikke fremstiller foreldrene som onde. Tvert imot viser den hvor komplisert kjærlighet kan være når den formes av tradisjon, frykt og forventninger. Faren elsker datteren sin – men kjærligheten filtreres gjennom forestillinger om ære, ansvar og religion. Dermed får kjærligheten en mørk form: den beskytter gjennom kontroll, den straffer for å redde, den fengsler for å bevare det man tror er best.</p>
-
-<p>Dette gjør filmen enda mer smertefull: konflikten er ikke mellom gode og onde mennesker, men mellom to ulike måter å forstå kjærlighet og moral på. En av filmens sterkeste sider er hvordan den viser hva det faktisk gjør med unge mennesker å stå mellom to verdener. Nisha blir dratt frem og tilbake mellom en kultur som sier “Bli deg selv” og en som sier “Vær slik vi sier du skal være.” Resultatet er et sjeldent sterkt portrett av en ungdom som forsøker å redde både seg selv og familien – men som gang på gang mister litt mer av seg selv hver gang hun tvinges til å velge.</p>
+<p>Dette gjør filmen enda mer smertefull: konflikten er ikke mellom gode og onde mennesker, men mellom to ulike måter å forstå kjærlighet og moral på.
+En av filmens sterkeste sider er hvordan den viser hva det faktisk gjør med unge mennesker å stå mellom to verdener. Nisha blir dratt frem og tilbake mellom en kultur som sier “Bli deg selv” og en som sier “Vær slik vi sier du skal være.”
+Resultatet er et sjeldent sterkt portrett av en ungdom som forsøker å redde både seg selv og familien men som gang på gang mister litt mer av seg selv hver gang hun tvinges til å velge.</p>
 
 <h3>Mine egne refleksjoner</h3>
 
-<p>Personlig mener jeg filmen tydelig avdekker de problematiske sidene ved patriarkalske, strengere kultursystemer som ikke gir rom for individuell frihet. Det betyr ikke at hele kulturen er “dårlig”, men at visse tradisjoner – spesielt de som kontrollerer kvinners liv – kolliderer kraftig med både menneskerettigheter og moderne forståelser av autonomi.</p>
+<p>Personlig mener jeg filmen tydelig avdekker de problematiske sidene ved patriarkalske, strengere kultursystemer som ikke gir rom for individuell frihet. Det betyr ikke at hele kulturen er “dårlig”, men at visse tradisjoner spesielt de som kontrollerer kvinners liv kolliderer kraftig med både menneskerettigheter og moderne forståelser av autonomi.
+Når foreldre kommer til et nytt land, men insisterer på å videreføre kontrollmekanismer som ikke passer inn i den nye konteksten, skapes det et enormt press på barna. Det er dette trykket filmen fanger: ikke bare kulturforskjeller, men en indre konflikt der en ungdom må betale prisen for foreldrenes frykt for sosial dom.
+Til slutt handler Hva vil folk si ikke bare om norsk og pakistansk kultur. Det er en film om hva som skjer når mennesker forsøker å bygge et hjem i et nytt land uten å gi opp det gamle. Det er en film om identitetens pris, om kjærlighetens mørkere sider, og om den eksistensielle kampen for frihet i møte med forventninger som ikke lar deg være deg selv.
+Den viser at det å vokse opp mellom to kulturer ikke bare er en kulturell utfordring, men en dypt menneskelig kamp
+Hvem blir jeg når alle andre forsøker å bestemme det for meg?</p>
+        </article>
 
-<p>Når foreldre kommer til et nytt land, men insisterer på å videreføre kontrollmekanismer som ikke passer inn i den nye konteksten, skapes det et enormt press på barna. Det er dette trykket filmen fanger: ikke bare kulturforskjeller, men en indre konflikt der en ungdom må betale prisen for foreldrenes frykt for sosial dom.</p>
+     
+        <article id="enText" class="hidden">
+<p><strong>Reflective text about "Hva vil folk si"</strong>
+In the film "Hva vil folk si" we meet the teenager Nisha, a Norwegian-Pakistani girl living between two worlds that never fully meet. She grows up in Norway but in a family that carries norms, values, and expectations from Pakistan. The film explores not only a personal conflict — it presents one of our era's most universal experiences: the struggle between individual freedom and collective traditions. Identity is not something we simply "have." It is formed in the encounter between ourselves and the world. Philosopher Hannah Arendt argued that identity is created when we step forward before others — when we act, choose, and show who we are. The problem for Nisha is that she is not allowed to step forward as she wishes. She is forced to play two roles: the perfect daughter at home, and the ordinary Norwegian teenager outside.</p>
 
-<p>Til slutt handler <strong>Hva vil folk si</strong> ikke bare om norsk og pakistansk kultur. Det er en film om hva som skjer når mennesker forsøker å bygge et hjem i et nytt land uten å gi opp det gamle. Det er en film om identitetens pris, om kjærlighetens mørkere sider, og om den eksistensielle kampen for frihet i møte med forventninger som ikke lar deg være deg selv.</p>
+<p>This space between two roles eventually becomes a place without security. She doesn't fully belong anywhere. Many young people growing up in minority families in Norway feel exactly this: "Who am I when neither world fully accepts me?"</p>
 
-<p>Den viser at det å vokse opp mellom to kulturer ikke bare er en kulturell utfordring, men en dypt menneskelig kamp: <strong>Hvem blir jeg når alle andre forsøker å bestemme det for meg?</strong></p>
-          </div>
+<h3>Two cultures — two logics</h3>
 
-          <!-- Korean translation (hidden by default) -->
-          <div id="koText" style="display:none;" class="lang-kor">
-<p>영화 <strong>무엇이 사람들의 말일까 (Hva vil folk si)</strong> 에서 우리는 10대 소녀 니샤를 만납니다. 그녀는 노르웨이에서 자랐지만 파키스탄의 규범, 가치관, 기대를 지닌 가족 안에서 두 세계 사이에 끼어 살아갑니다. 이 영화는 단순한 개인적 갈등을 탐구하는 것이 아니라, 우리 시대의 가장 보편적인 경험 중 하나인: 개인의 자유와 집단적 전통 사이의 싸움을 보여줍니다. 정체성은 우리가 단지 ‘가지고 있는’ 것이 아닙니다. 그것은 우리 자신과 세계의 만남 속에서 형성됩니다. 철학자 한나 아렌트는 정체성이 다른 사람들 앞에 나설 때 — 즉 행동하고, 선택하고, 스스로를 드러낼 때 만들어진다고 말했습니다. 니샤의 문제는 그녀가 스스로 원하는 방식으로 나설 수 없다는 것입니다. 그녀는 집에서는 완벽한 딸의 역할을, 밖에서는 평범한 노르웨이 10대의 역할을 연기하도록 강요받습니다.</p>
+<p>The Norwegian culture in the film represents an ideal system that places the individual first. Freedom, self-determination, and personal happiness appear as natural rights. In such a system, youth is seen as a period for exploration: trying, failing, testing boundaries, creating memories that ultimately shape who one becomes. The Pakistani culture represented by the family, however, is built on a collective logic: the family as a whole is more important than the individual's desires. In such a system, children are not just individuals but bearers of the family's honor. Where Norwegians say "Do what is best for you," many Pakistani parents say "Do what is best for us." These two logics come head-to-head in the film — and Nisha ends up in the middle of a battlefield she never asked to be part of.</p>
 
-<p>이 두 역할 사이의 간극은 곧 안전이 없는 공간이 됩니다. 그녀는 어디에도 완전히 속하지 못합니다. 노르웨이의 소수자 가정에서 자라는 많은 젊은이들이 바로 이런 감정을 경험합니다: “어떤 세계도 나를 완전히 받아들이지 않을 때 나는 누구인가?”</p>
+<p>Jean-Paul Sartre argued that humans are condemned to freedom: we must choose our lives, and we cannot escape responsibility for our choices. For Nisha this is paradoxical. She lives in a society that expects her to be free, yet in a family that denies her that responsibility.</p>
 
-<h3>두 문화 — 두 논리</h3>
+<p>Thus she stands in an existential conflict: Am I free, or am I bound? And who pays the price if I choose myself? This is the deepest question the film asks — not just about culture, but about what it means to be human.</p>
 
-<p>영화 속 노르웨이 문화는 개인을 우선시하는 이상적 체계를 나타냅니다. 자유, 자기결정권, 개인적 행복은 자연스러운 권리로 보입니다. 이러한 체계에서는 청소년기가 탐험의 시기로 여겨집니다: 시도하고, 실패하고, 경계를 시험하며, 결국 자신을 형성하는 기억을 경험합니다. 반면 가족이 대표하는 파키스탄 문화는 집단적 논리에 기반합니다: 가족 전체가 개인의 욕구보다 더 중요합니다. 이러한 체계에서 아이들은 단순한 개인이 아니라 가족의 명예를 짊어진 존재가 됩니다. 노르웨이 사람들이 “너에게 가장 좋은 것을 해라”라고 말할 때, 많은 파키스탄 부모들은 “우리에게 가장 좋은 것을 해라”라고 말합니다. 이 두 논리는 영화 속에서 정면으로 충돌하고 — 니샤는 원치 않았던 전쟁터 한가운데에 놓입니다.</p>
+<p>The title "Hva vil folk si" reveals the film's moral engine. Shame becomes a social tool, a quiet power that governs actions as strongly as religion or tradition. For Nisha's father, the daughter's actions are not just her own; they become a mirror that society can use to judge the whole family. When he sends her to Pakistan, it is not necessarily because he hates her — but because he fears the social gaze that judges without understanding.
+Here shame becomes a prison, not only for Nisha but also for the parents. The film shows how people can be trapped by expectations from a society they no longer even live in.</p>
 
-<p>장폴 사르트르는 인간은 자유에 처해 있다고 주장했습니다: 우리는 삶을 선택해야 하고, 우리의 선택에 대한 책임에서 벗어날 수 없습니다. 니샤에게 이것은 역설적입니다. 그녀는 자유롭기를 기대하는 사회 속에서 살고 있지만, 가족은 그녀에게 그 책임을 허락하지 않습니다.</p>
+<p>One of the most interesting aspects of the film is that it does not portray the parents as evil. On the contrary, it shows how complicated love can be when shaped by tradition, fear, and expectations. The father loves his daughter, but that love is filtered through ideas of honor, duty, and religion. Thus love takes on a darker form: protecting through control, punishing to save, imprisoning to preserve what one believes is best.</p>
 
-<p>그리하여 그녀는 존재론적 갈등에 직면합니다: 나는 자유로운가, 아니면 얽매여 있는가? 그리고 내가 자신을 선택한다면 누가 대가를 치르는가? 이것이 영화가 제기하는 가장 깊은 질문입니다 — 단지 문화에 관한 것이 아니라 인간이 된다는 것이 무엇인지에 관한 질문입니다.</p>
+<p>This makes the film even more painful: the conflict is not between good and evil people but between two different ways of understanding love and morality. One of the film's strongest qualities is how it shows what it actually does to young people to stand between two worlds. Nisha is pulled back and forth between a culture that says "Be yourself" and one that says "Be as we tell you to be."
+The result is a rare and powerful portrait of a youth trying to save both herself and her family, but who, again and again, loses a little more of herself every time she is forced to choose.</p>
 
-<p>제목 <em>Hva vil folk si</em> 는 영화의 도덕적 동력을 드러냅니다. 수치심은 종교나 전통만큼이나 행동을 지배하는 조용한 권력이 됩니다. 니샤의 아버지에게 딸의 행동은 단지 그녀 자신의 것이 아닙니다; 그것은 사회가 가족 전체를 판단하는 거울이 됩니다. 그가 그녀를 파키스탄으로 보낼 때, 그것은 반드시 그가 그녀를 미워해서가 아니라 — 이해하지 못한 채 판단하는 사회적 시선을 두려워하기 때문입니다.</p>
+<h3>My own reflections</h3>
 
-<p>여기서 수치심은 니샤뿐 아니라 부모들에게도 감옥이 됩니다. 영화는 사람들이 더 이상 살고 있지 않은 사회의 기대에 의해 어떻게 갇힐 수 있는지를 보여줍니다.</p>
-
-<p>영화의 가장 흥미로운 점 중 하나는 부모를 악인으로 그리지 않는다는 것입니다. 오히려 전통, 두려움, 기대에 의해 형성된 사랑이 얼마나 복잡할 수 있는지를 보여줍니다. 아버지는 딸을 사랑하지만 — 그 사랑은 명예, 책임, 종교에 대한 관념을 통해 필터링됩니다. 그러므로 사랑은 어두운 형태를 띠게 됩니다: 통제를 통해 보호하고, 구하기 위해 벌하며, 자신들이 옳다고 믿는 것을 보존하기 위해 감금합니다.</p>
-
-<p>이로 인해 영화는 더욱 고통스럽습니다: 갈등은 선한 사람과 악한 사람 사이의 싸움이 아니라 사랑과 도덕을 이해하는 두 가지 다른 방식 사이의 싸움입니다. 영화의 가장 강력한 부분 중 하나는 젊은이들이 두 세계 사이에 서 있을 때 실제로 무엇을 겪는지를 보여주는 방식입니다. 니샤는 “너 자신이 되어라”라고 말하는 문화와 “우리가 말하는 방식으로 행동하라”라고 말하는 문화 사이에서 이리저리 끌려갑니다. 그 결과 그녀는 자신과 가족을 모두 지키려 애쓰는 청소년의 드물게 강렬한 초상으로 그려지지만 — 매번 선택을 강요당할 때마다 조금씩 더 자신을 잃습니다.</p>
-
-<h3>나의 성찰</h3>
-
-<p>개인적으로 나는 이 영화가 개인의 자유에 공간을 허용하지 않는 가부장적이고 엄격한 문화 체계의 문제적인 측면을 뚜렷하게 드러낸다고 생각합니다. 이것이 그 문화 전체가 “나쁘다”는 의미는 아니지만 — 특히 여성의 삶을 통제하는 전통들은 인권과 현대적 자율성 이해와 심각하게 충돌합니다.</p>
-
-<p>부모가 새로운 나라로 올 때, 그러나 새로운 맥락에 맞지 않는 통제 메커니즘의 전수를 고집할 때, 아이들에게 엄청난 압력이 생깁니다. 바로 이 압력이 영화가 포착하는 것입니다: 단지 문화 차이만이 아니라, 한 청소년이 부모의 사회적 판단에 대한 두려움의 대가를 치러야 하는 내적 갈등입니다.</p>
-
-<p>결국 <strong>Hva vil folk si</strong> 는 단지 노르웨이와 파키스탄 문화에 대한 영화가 아닙니다. 이것은 사람들이 옛것을 포기하지 않고도 새 땅에서 집을 지으려 할 때 어떤 일이 일어나는지를 보여주는 영화입니다. 그것은 정체성의 대가, 사랑의 어두운 측면, 그리고 당신이 스스로가 되지 못하도록 하는 기대와 마주할 때의 존재론적 자유 투쟁에 대한 영화입니다.</p>
-
-<p>두 문화 사이에서 성장하는 것이 단지 문화적 도전이 아니라 깊이 인간적인 투쟁이라는 것을 이 영화는 보여줍니다: <strong>모든 이가 나를 대신 정하려 할 때 나는 누구인가?</strong></p>
-          </div>
-
+<p>Personally, I believe the film clearly exposes problematic aspects of patriarchal, stricter cultural systems that do not allow room for individual freedom. That does not mean the whole culture is "bad," but that certain traditions — especially those that control women's lives — collide strongly with human rights and modern understandings of autonomy.
+When parents come to a new country but insist on passing on control mechanisms that do not fit the new context, enormous pressure is put on the children. This is the pressure the film captures: not just cultural differences, but an internal conflict where a youth must pay the price for the parents' fear of social judgment.
+In the end, "Hva vil folk si" is not only a film about Norwegian and Pakistani culture. It is a film about what happens when people try to build a home in a new land without giving up the old. It is a film about the price of identity, the darker sides of love, and the existential struggle for freedom in the face of expectations that will not let you be yourself.
+It shows that growing up between two cultures is not only a cultural challenge but a deeply human struggle
+Who am I when everyone else tries to decide for me?</p>
         </article>
       </div>
     </main>
 
     <footer>
-      <div>Du kan endre bakgrunnsbilde via <code>--bg-url</code> i &lt;style&gt; i toppen, eller ved å bruke 'Bakgrunnsbilde'-knappen.</div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button class="btn" id="downloadBtn">Last ned HTML</button>
+      <div class="small">Skript: cursive font. Boksen er scrollbar. Trykk knappen for å bytte språk.</div>
+      <div>
+        <button id="topBtn" class="btn secondary">Til toppen</button>
       </div>
     </footer>
   </div>
 
   <script>
-    // Color cycling
-    const colorBtn = document.getElementById('colorBtn');
-    const themes = ['theme-1','theme-2','theme-3','theme-4','theme-5'];
-    let themeIndex = 0;
-    colorBtn.addEventListener('click', ()=>{
-      themeIndex = (themeIndex + 1) % themes.length;
-      document.body.classList.remove(...themes);
-      document.body.classList.add(themes[themeIndex]);
-    });
-
-    // Translate toggle
-    const translateBtn = document.getElementById('translateBtn');
+    const toggleBtn = document.getElementById('toggleBtn');
     const noText = document.getElementById('noText');
-    const koText = document.getElementById('koText');
-    const langIndicator = document.getElementById('langIndicator');
-    let showingKor = false;
-    translateBtn.addEventListener('click', ()=>{
-      showingKor = !showingKor;
-      if(showingKor){
-        noText.style.display = 'none';
-        koText.style.display = 'block';
-        langIndicator.textContent = 'Språk: Korean (한국어)';
-        translateBtn.textContent = 'Vis original (norsk)';
-      } else {
-        noText.style.display = 'block';
-        koText.style.display = 'none';
-        langIndicator.textContent = 'Språk: Norsk (bokmål)';
-        translateBtn.textContent = 'Oversett til koreansk';
-      }
-    });
-
-    // Background help & simple prompt to set background via JS
-    const bgHelp = document.getElementById('bgHelp');
-    bgHelp.addEventListener('click', ()=>{
-      const url = prompt('Lim inn URL-en til bakgrunnsbildet (bruk https:// eller file-sti):');
-      if(url){
-        document.documentElement.style.setProperty('--bg-url', 'url("'+url+'")');
-      }
-    });
-
-    // Download the HTML file (self-contained)
+    const enText = document.getElementById('enText');
+    const topBtn = document.getElementById('topBtn');
     const downloadBtn = document.getElementById('downloadBtn');
+    let showingEn = false;
+
+    toggleBtn.addEventListener('click', ()=>{
+      showingEn = !showingEn;
+      if(showingEn){
+        noText.classList.add('hidden');
+        enText.classList.remove('hidden');
+        toggleBtn.textContent = 'Vis norsk';
+      } else {
+        enText.classList.add('hidden');
+        noText.classList.remove('hidden');
+        toggleBtn.textContent = 'Translate to English';
+      }
+
+      document.getElementById('scrollBox').scrollTop = 0;
+    });
+
+    topBtn.addEventListener('click', ()=>{ document.getElementById('scrollBox').scrollTop = 0; });
+
+ 
     downloadBtn.addEventListener('click', ()=>{
       const doctype = '<!doctype html>\n';
       const html = document.documentElement.outerHTML;
       const blob = new Blob([doctype + html], {type: 'text/html'});
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url;
-      a.download = 'hva_vil_folk_si.html';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
+      a.href = url; a.download = 'hva_vil_folk_si_pink.html';
+      document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     });
-
-    // Accessibility: keyboard shortcuts
-    window.addEventListener('keydown', (e)=>{
-      if(e.ctrlKey && e.key === 'k'){
-        // ctrl+k to toggle language
-        translateBtn.click();
-      }
-      if(e.ctrlKey && e.key === 'c'){
-        // ctrl+c to change color
-        colorBtn.click();
-      }
-    });
-
   </script>
 </body>
 </html>
