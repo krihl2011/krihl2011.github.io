@@ -1,188 +1,86 @@
-<!DOCTYPE html>
-<html lang="no">
+<!doctype html>
+<html lang="nb">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hva vil folk si – Refleksjon</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hva vil folk si — Resonnerende tekst</title>
+  <style>
+    :root{
+      --max-width: 900px;
+      --padding: 24px;
+      --bg-url: none; /* Sett en bakgrunnsbilde-URL her: --bg-url: url("path/til/ditt-bilde.jpg") */
+      --text-color: #111111;
+      --accent: #8b5cf6;
+      --card-bg: rgba(255,255,255,0.86);
+      --rounded: 14px;
+      --shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
 
-    <!-- Google Font for elegant cursive style -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    html,body{height:100%;}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background-image: var(--bg-url);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color:var(--text-color);
+      -webkit-font-smoothing:antialiased;
+    }
 
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', sans-serif;
-            color: #4a2b3b;
-            line-height: 1.7;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            background-repeat: no-repeat;
-            /* SET YOUR OWN BACKGROUND IMAGE HERE */
-            background-image: url('YOUR_BACKGROUND_IMAGE.jpg');
-        }
+    .shell{
+      width:100%;
+      max-width:var(--max-width);
+      background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,250,0.94));
+      border-radius:var(--rounded);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+    }
 
-        .overlay {
-            background: rgba(255, 200, 220, 0.55);
-            width: 100%;
-            min-height: 100vh;
-            padding: 40px 20px;
-            box-sizing: border-box;
-        }
+    header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      padding:16px 20px;
+      border-bottom:1px solid rgba(0,0,0,0.06);
+      background:linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.75));
+      backdrop-filter: blur(4px);
+    }
 
-        .container {
-            max-width: 850px;
-            margin: auto;
-            padding: 20px;
-            background: rgba(255, 210, 230, 0.6);
-            border-radius: 14px;
-            backdrop-filter: blur(4px);
-        }
+    h1{margin:0;font-size:1.1rem;letter-spacing:0.2px}
+    .controls{display:flex;gap:8px;align-items:center}
+    .btn{appearance:none;border:0;padding:8px 12px;border-radius:10px;font-weight:600;cursor:pointer;background:var(--accent);color:white}
+    .btn.secondary{background:transparent;color:var(--accent);border:1px solid rgba(139,92,246,0.12)}
+    .btn.ghost{background:transparent;color:var(--accent);border:1px dashed rgba(139,92,246,0.14)}
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-align: center;
-        }
+    main{padding:var(--padding); overflow:auto}
+    article{max-width:860px;margin:0 auto}
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-top: 40px;
-        }
+    .meta{font-size:0.92rem;margin-bottom:12px;color:rgba(0,0,0,0.6)}
 
-        p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
-        }
+    p{line-height:1.62;margin:14px 0;font-size:1rem}
+    strong{font-weight:700}
 
-        .lang-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 20px 0 40px;
-        }
+    footer{padding:14px 20px;border-top:1px solid rgba(0,0,0,0.06);font-size:0.9rem;color:rgba(0,0,0,0.6);display:flex;justify-content:space-between;align-items:center}
 
-        button {
-            padding: 10px 20px;
-            background: none;
-            border: 2px solid #ffffff;
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
+    /* small screens */
+    @media (max-width:600px){
+      :root{--padding:16px}
+      header{padding:12px}
+      main{padding:16px}
+      h1{font-size:1rem}
+      p{font-size:0.98rem}
+    }
 
-        button:hover {
-            background: white;
-            color: black;
-        }
-    </style>
-</head>
-<body>
-    <div class="overlay">
-        <div class="container">
-            <h1>Hva vil folk si – Resonnerende tekst</h1>
-
-            <div class="lang-buttons">
-                <button onclick="switchLang('no')">Norsk</button>
-                <button onclick="switchLang('en')">English</button>
-                <button onclick="switchLang('kr')">한국어</button>
-            </div>
-
-            <div id="content">
-                <!-- Norwegian default text -->
-                <h2>Innledning</h2>
-                <p>I filmen <em>Hva vil folk si</em> møter vi tenåringen Nisha, en norsk-pakistansk jente som lever i spennet mellom to verdener som aldri helt klarer å møtes...</p>
-
-                <h2>To kulturer – to logikker</h2>
-                <p>Den norske kulturen i filmen representerer et idealsystem som setter individet først...</p>
-
-                <h2>Skam som sosialt våpen</h2>
-                <p>Tittelen <em>Hva vil folk si</em> avslører hele filmens moralske motor...</p>
-
-                <h2>Kjærlighet i konfliktens skygge</h2>
-                <p>Noe av det mest interessante i filmen er at den ikke fremstiller foreldrene som onde...</p>
-
-                <h2>Mine egne refleksjoner</h2>
-                <p>Personlig mener jeg filmen tydelig avdekker de problematiske sidene ved patriarkalske...</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const text_no = `
-        <h2>Innledning</h2>
-        <p>I filmen <em>Hva vil folk si</em> møter vi tenåringen Nisha, en norsk-pakistansk jente som lever i spennet mellom to verdener som aldri helt klarer å møtes. Hun vokser opp i Norge, men i en familie som bærer med seg normer, verdier og forventninger fra Pakistan. Filmen utforsker ikke bare en personlig konflikt – den viser en av vår tids mest universelle erfaringer: kampen mellom individets frihet og kollektive tradisjoner.</p>
-
-        <h2>Identitet og filosofi</h2>
-        <p>Identitet er ikke noe vi bare “har”. Den formes i møtet mellom oss selv og verden. Filosofen Hannah Arendt mente at identitet skapes når vi trer frem foran andre – når vi handler, velger og viser hvem vi er. Problemet for Nisha er at hun ikke får lov til å tre frem slik hun selv ønsker. Hun blir tvunget til å spille to roller: den perfekte datteren hjemme og den vanlige norske tenåringen ute.</p>
-
-        <p>Dette mellomrommet mellom to roller blir etter hvert et rom uten trygghet. Hun hører ikke helt hjemme noe sted. Mange unge som vokser opp i minoritetsfamilier i Norge kjenner nettopp denne følelsen: “Hvem er jeg når ingen av verdener helt godtar meg?”</p>
-
-        <h2>To kulturer – to logikker</h2>
-        <p>Den norske kulturen i filmen representerer et idealsystem som setter individet først. Frihet, selvbestemmelse og personlig lykke fremstår som naturlige rettigheter. Ungdomstiden blir sett på som en periode for utforskning – man tester grenser og finner gradvis ut hvem man er.</p>
-
-        <p>Den pakistanske kulturen som familien representerer, bygger derimot på en kollektiv logikk: familien som helhet er viktigere enn enkeltpersonens ønsker. Barn blir ikke bare individer, men bærere av familiens ære. Der nordmenn sier “Gjør det som er best for deg”, sier mange pakistanske foreldre “Gjør det som er best for oss.”</p>
-
-        <p>Disse to logikkene kommer front mot front i filmen – og Nisha havner midt imellom dem som en slagmark hun aldri ba om å være en del av. Sartre hevdet at mennesker er dømt til frihet: vi må velge våre liv. For Nisha er dette paradoksalt – hun lever i et samfunn som forventer at hun skal være fri, men i en familie som nekter henne dette ansvaret.</p>
-
-        <h2>Skam som sosialt våpen</h2>
-        <p>Tittelen <em>Hva vil folk si</em> avslører filmens moralske motor. Skam blir et sosialt våpen som styrer handlinger like sterkt som religion eller tradisjon. For Nishas far er datterens handlinger ikke bare hennes egne; de blir noe hele familien blir dømt for. Når han sender henne til Pakistan, skjer det ikke nødvendigvis av hat – men av frykt for sosial dom.</p>
-
-        <p>Skammen blir et fengsel – ikke bare for Nisha, men for foreldrene også. Filmen viser hvordan mennesker kan være fanget av forventninger i et samfunn de ikke engang bor i lenger.</p>
-
-        <h2>Kjærlighet i konfliktens skygge</h2>
-        <p>Filmen fremstiller ikke foreldrene som onde. Tvert imot viser den hvor komplisert kjærlighet kan være når den formes av tradisjon, frykt og forventninger. Faren elsker datteren sin, men kjærligheten uttrykkes gjennom kontroll. Den beskytter gjennom å straffe, den begrenser for å bevare. Dette gjør konflikten enda mer smertefull.</p>
-
-        <h2>Mine refleksjoner</h2>
-        <p>Filmen avdekker problematiske sider ved patriarkalske kulturer som ikke gir rom for individuell frihet. Det betyr ikke at hele kulturen er dårlig, men at visse tradisjoner kolliderer med moderne forståelser av autonomi og menneskerettigheter.</p>
-
-        <p>Når foreldre kommer til et nytt land, men insisterer på å gjenskape kontrollmekanismer fra en annen tid og kontekst, skapes et enormt press på barna. Filmen handler ikke bare om kulturforskjeller, men om identitetens pris – og om hva som skjer når andre forsøker å bestemme hvem du skal være.</p>
-
-        <p>Til slutt står Nisha igjen med et spørsmål mange unge i minoritetsmiljøer kjenner på: <strong>Hvem blir jeg når alle andre forsøker å bestemme det for meg?</strong></p>`
-
-        const text_en = `
-        <h2>Introduction</h2>
-        <p>In the film <em>What Will People Say</em>, we meet Nisha...</p>
-
-        <h2>Two cultures – two logics</h2>
-        <p>The Norwegian culture in the film represents...</p>
-
-        <h2>Shame as a social weapon</h2>
-        <p>The title <em>What Will People Say</em> reveals...</p>
-
-        <h2>Love in the shadow of conflict</h2>
-        <p>One of the most interesting aspects of the film...</p>
-
-        <h2>My reflections</h2>
-        <p>Personally, I believe the film clearly exposes...</p>`;
-
-        const text_kr = `
-        <h2>소개</h2>
-        <p>영화 <em>하와 빌 폭 시</em>에서 우리는 니샤라는 소녀를 만나게 됩니다...</p>
-
-        <h2>두 문화 – 두 논리</h2>
-        <p>영화 속 노르웨이 문화는 개인의 자유를 우선시하는...</p>
-
-        <h2>사회적 무기로서의 수치심</h2>
-        <p><em>하와 빌 폭 시</em>라는 제목은...</p>
-
-        <h2>갈등 속의 사랑</h2>
-        <p>이 영화가 흥미로운 이유는 부모를 악인으로 묘사하지 않는다는 것입니다...</p>
-
-        <h2>나의 성찰</h2>
-        <p>개인적으로 이 영화는 가부장적 문화의 문제점을...</p>`;
-
-        function switchLang(lang) {
-            if (lang === 'no') document.getElementById('content').innerHTML = text_no;
-            if (lang === 'en') document.getElementById('content').innerHTML = text_en;
-            if (lang === 'kr') document.getElementById('content').innerHTML = text_kr;
-        }
-    </script>
-</body>
-</html>
+    /* color themes for text (JS will toggle classes) */
+    .theme-1{--text-color:#111111}
+    .theme-2{--text-color:#1f2937}
+    .theme-3{--text-color:#0b3c5d}
